@@ -3726,6 +3726,7 @@ MonoBehaviour:
   pview: {fileID: 2044940180}
   winner: {fileID: 1261763737}
   gameRoom: {fileID: 2044940181}
+  playerPrefab: TankFree
 --- !u!4 &2044940179
 Transform:
   m_ObjectHideFlags: 0

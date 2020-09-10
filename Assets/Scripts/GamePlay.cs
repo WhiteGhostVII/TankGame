@@ -10,6 +10,7 @@ public class GamePlay : MonoBehaviour
     public PhotonView pview;
     public GameObject winner;
     public GameRoom gameRoom;
+    public string playerPrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -29,7 +30,7 @@ public class GamePlay : MonoBehaviour
         int indexrespawn = Random.Range(0, respawns.Length);
         if (respawns[indexrespawn].GetComponent<RespawnValidator>().thing == null)
         {
-            PhotonNetwork.Instantiate("TankFree", respawns[indexrespawn].transform.position, respawns[indexrespawn].transform.rotation, 0);
+            PhotonNetwork.Instantiate(playerPrefab, respawns[indexrespawn].transform.position, respawns[indexrespawn].transform.rotation, 0);
             InvokeRepeating("CheckStatus", 3, 1);
         }
         else
