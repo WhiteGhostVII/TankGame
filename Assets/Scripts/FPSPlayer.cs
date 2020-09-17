@@ -21,6 +21,7 @@ public class FPSPlayer : MonoBehaviour
     public Transform aimref;
     public VisualEffect vfxshoot;
     public GameObject laser;
+    public AudioSource AudShoot;
     void Start()
     {
         rdb = GetComponent<Rigidbody>();
@@ -30,6 +31,11 @@ public class FPSPlayer : MonoBehaviour
         {
             Camera.main.GetComponent<NetCamera>().SetPlayer(gameObject);
             Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+        else
+        {
+            laser.SetActive(false);
         }
     }
 
@@ -47,16 +53,16 @@ public class FPSPlayer : MonoBehaviour
             {
                 pview.RPC("Shoot", RpcTarget.AllBuffered, null);
             }
-            else
-            {
-                laser.SetActive(false);
-            }
+            
             
         }
         else
         {
             Collider[] cols = GetComponentsInChildren<Collider>();
-            gameObject.tag = "RemotePlayer";
+            foreach (Collider col in cols)
+            {
+                col.gameObject.tag = "RemotePlayer";
+            }
         }
     }
     private void FixedUpdate()
@@ -90,6 +96,7 @@ public class FPSPlayer : MonoBehaviour
     void Shoot()
     {
         vfxshoot.Play();
+        AudShoot.Play();
         if(Physics.Raycast(aim.transform.position,aim.transform.forward,out RaycastHit hit, 1000))
         {
             if (hit.collider.CompareTag("RemotePlayer"))
