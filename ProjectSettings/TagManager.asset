@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - PlayerList
+  - RemotePlayer
   layers:
   - Default
   - TransparentFX

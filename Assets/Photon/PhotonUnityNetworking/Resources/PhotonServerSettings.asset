@@ -42,6 +42,8 @@ MonoBehaviour:
   - DamageCall
   - VictoryTank
   - Shoot
+  - Shooted
+  - VictoryFPS
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1
